@@ -91,7 +91,7 @@ module.exports = {
       queryFunctions.push(mongodbRandomWorld());
     }
     Promise.all(queryFunctions).then((results) => {
-      req.sendFastObjectUnchecked(results);
+      req.sendStringifiedObject(JSON.stringify(results));
     });
   },
 
@@ -116,7 +116,7 @@ module.exports = {
     }
 
     Promise.all(promises).then((res) => {
-      req.sendFastObjectUnchecked(res);
+      req.sendStringifiedObject(JSON.stringify(res));
     })
   }
 };

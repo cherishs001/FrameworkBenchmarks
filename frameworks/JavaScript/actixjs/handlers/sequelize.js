@@ -60,7 +60,7 @@ module.exports = {
     }
 
     Promise.all(worldPromises).then((worlds) => {
-      req.sendFastObjectUnchecked(worlds);
+      req.sendStringifiedObject(JSON.stringify(worlds));
     });
   },
 
@@ -107,7 +107,7 @@ module.exports = {
       const updates = worlds.map((e) => worldUpdate(e));
 
       Promise.all(updates).then((updated) => {
-        req.sendFastObjectUnchecked(updated);
+        req.sendStringifiedObject(JSON.stringify(updated));
       });
     });
   }

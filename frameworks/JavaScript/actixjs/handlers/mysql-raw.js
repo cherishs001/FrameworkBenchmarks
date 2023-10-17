@@ -74,7 +74,7 @@ module.exports = {
     async.parallel(queryFunctions, (err, results) => {
       if (err) { return process.exit(1); }
 
-      req.sendFastObjectUnchecked(results);
+      req.sendStringifiedObject(JSON.stringify(results));
     });
   },
 
@@ -86,7 +86,7 @@ module.exports = {
         worlds.push(myCache.get(key));
       }
 
-      req.sendFastObjectUnchecked(worlds);
+      req.sendStringifiedObject(JSON.stringify(worlds));
     });
   },
 
@@ -110,7 +110,7 @@ module.exports = {
     async.parallel(queryFunctions, (err, results) => {
       if (err) { return process.exit(1); }
 
-      req.sendFastObjectUnchecked(results);
+      req.sendStringifiedObject(JSON.stringify(results));
     });
   }
 
