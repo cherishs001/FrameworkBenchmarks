@@ -31,7 +31,7 @@ actixjs.get("/fortunes", Handler.Fortunes);
 actixjs.get("/db", Handler.SingleQuery);
 
 const roleQueries = (queries) => {
-  if (queries === '' || queries === 'foo' || queries === 0) {
+  if (queries === '' || queries === 'foo' || queries == 0) {
     return 1;
   }
   if (queries > 500) {
