@@ -30,18 +30,34 @@ actixjs.get("/fortunes", Handler.Fortunes);
 
 actixjs.get("/db", Handler.SingleQuery);
 
+const roleQueries = (queries) => {
+  if (isNaN(parseInt(queries))) {
+    return 1;
+  }
+  if (parseInt(queries) < 1) {
+    return 1;
+  }
+  if (parseInt(queries) > 500) {
+    return 500;
+  }
+  return parseInt(queries);
+}
+
 actixjs.get("/queries", (req) => {
-  const {queries} = req.getQueryParams();
+  let {queries} = req.getQueryParams();
+  queries = roleQueries(queries);
   Handler.MultipleQueries(queries, req);
 });
 
 actixjs.get("/updates", (req) => {
-  const {queries} = req.getQueryParams();
+  let {queries} = req.getQueryParams();
+  queries = roleQueries(queries);
   Handler.Updates(queries, req);
 });
 
 actixjs.get("/cached", (req) => {
-  const {queries} = req.getQueryParams();
+  let {queries} = req.getQueryParams();
+  queries = roleQueries(queries);
   Handler.CachedQueries(queries, req);
 });
 
