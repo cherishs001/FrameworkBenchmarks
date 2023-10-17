@@ -31,16 +31,13 @@ actixjs.get("/fortunes", Handler.Fortunes);
 actixjs.get("/db", Handler.SingleQuery);
 
 const roleQueries = (queries) => {
-  if (isNaN(parseInt(queries))) {
+  if (queries === '' || queries === 'foo') {
     return 1;
   }
-  if (parseInt(queries) < 1) {
-    return 1;
-  }
-  if (parseInt(queries) > 500) {
+  if (queries > 500) {
     return 500;
   }
-  return parseInt(queries);
+  return queries;
 }
 
 actixjs.get("/queries", (req) => {
